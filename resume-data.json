@@ -1,0 +1,91 @@
+{
+  "name": "KAZI SHARIFUL ISLAM",
+  "title": "Full Stack Developer",
+  "location": "Mirpur, Dhaka, Bangladesh",
+  "phone": "+8801612-178331",
+  "email": "kazisharif.dev@gmail.com",
+  "links": [
+    { "text": "github.com/kazi331", "url": "https://github.com/kazi331" },
+    { "text": "linkedin.com/in/kazi331", "url": "https://www.linkedin.com/in/kazi331" },
+    { "text": "kazisharif.dev", "url": "https://www.kazisharif.dev/" }
+  ],
+  "summary": "Full Stack Developer with 3+ years building scalable, high-performance web applications using TypeScript/JavaScript, React, and Node.js. Experienced with REST API design, JWT-based authentication, and relational databases (PostgreSQL, MySQL) via Prisma ORM and TypeORM, including hands-on NestJS backend development. Solo-shipped a production Shopify app end-to-end — frontend, backend, and database — and collaborate closely with cross-functional teams to design, test, and deploy clean, efficient code. Comfortable with Git-based version control and troubleshooting/debugging production systems.",
+  "skills": [
+    { "label": "Frontend", "value": "React.js, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3" },
+    { "label": "Backend", "value": "Node.js, Express.js, NestJS, REST API Design, JWT Authentication" },
+    { "label": "Databases", "value": "PostgreSQL, MySQL, SQL, Prisma ORM, TypeORM" },
+    { "label": "Web Fundamentals", "value": "JSON, Cookies, Asynchronous Programming, TanStack Query" },
+    { "label": "Tools & Practices", "value": "Git, Docker, GitHub Actions (CI/CD), Agile/Scrum" }
+  ],
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "dates": "Oct 2025 – Present",
+      "company": "Devsnest OPC · Dhaka",
+      "companyLink": null,
+      "bullets": [
+        "Solo-built a production Shopify app (Mixory Bundles) end to end — React/Next.js frontend, Node.js backend, PostgreSQL database via Prisma — live on the Shopify App Store.",
+        "Implemented JWT/OAuth-based authentication for merchant app installs, along with REST API endpoints for dynamic pricing and cart-transform logic.",
+        "Debugged and optimized the application for performance and stability across frontend and backend layers."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Frontend Lead)",
+      "dates": "Sept 2024 – July 2025",
+      "company": "Tutorsplan Corp · Dhaka",
+      "companyLink": { "text": "tutorsplan.com", "url": "http://tutorsplan.com/" },
+      "bullets": [
+        "Partnered with the backend engineer on Prisma/PostgreSQL schema design and REST API endpoints for a NestJS-backed tutor/student portal.",
+        "Led the frontend team and implemented Redux for global state management, cutting API round-trips by 40%."
+      ]
+    },
+    {
+      "title": "React/Next.js Developer",
+      "dates": "Apr 2024 – Aug 2024",
+      "company": "Dhali Overseas Limited · Dhaka",
+      "companyLink": null,
+      "bullets": [
+        "Migrated 3 projects from Webflow to React/Next.js (flight/hotel booking sites, B2B/B2C sales portals), improving performance by 60%.",
+        "Optimized data fetching/caching with TanStack Query, cutting page load time by 30%."
+      ]
+    },
+    {
+      "title": "Frontend Engineer",
+      "dates": "Mar 2023 – Mar 2024",
+      "company": "Approveage Inc · Toronto (Remote)",
+      "companyLink": null,
+      "bullets": [
+        "Built real-time client/admin data flow with Socket.IO and Firebase Cloud Messaging; improved response speed 30% via TanStack Query."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Mixory Bundles — Shopify App",
+      "link": "https://mixory-bundles.com/",
+      "description": "Solo-built bundle/checkout app for Shopify merchants, end-to-end — DB design, Node.js backend, OAuth, and storefront UI.",
+      "stack": "Next.js, React, Node.js, Prisma, PostgreSQL, Shopify Functions"
+    },
+    {
+      "title": "EdTech Learning Platform",
+      "link": null,
+      "description": "Course search/enrollment, progress tracking, real-time chat, admin panel.",
+      "stack": "Next.js 14, Redux, TanStack Query, NestJS, Tailwind CSS"
+    },
+    {
+      "title": "Maison: The Property App",
+      "link": "https://play.google.com/store/apps/details?id=com.approveage&hl=en",
+      "description": "Auth, document upload, real-time notifications via Firebase.",
+      "stack": "React Native, Redux, Firebase, REST API"
+    }
+  ],
+  "education": [
+    { "degree": "B.A. English Language and Literature", "school": "Govt. Safar Ali College, 2023" },
+    { "degree": "HSC, Science", "school": "Mosharrof Hossain Khan Chowdhury University College, 2017" }
+  ],
+  "languages": "Bengali (Native)  |  English (Fluent)",
+  "references": [
+    { "name": "Rahiyan Safin", "title": "Senior Software Engineer, Techjays", "email": "rahiyansafin@gmail.com" },
+    { "name": "Jerome Stephan", "title": "Founder, Approveage Inc.", "email": "jerome.ramsay@gmail.com" }
+  ]
+}
