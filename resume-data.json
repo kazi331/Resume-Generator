@@ -1,21 +1,45 @@
 {
-  "name": "KAZI SHARIFUL ISLAM",
-  "title": "Full Stack Developer",
+  "name": "KAZI SHARIFUL ISLAM Sayem",
+  "title": "Full Stack Developer — React/Next.js",
   "location": "Mirpur, Dhaka, Bangladesh",
   "phone": "+8801612-178331",
   "email": "kazisharif.dev@gmail.com",
   "links": [
-    { "text": "github.com/kazi331", "url": "https://github.com/kazi331" },
-    { "text": "linkedin.com/in/kazi331", "url": "https://www.linkedin.com/in/kazi331" },
-    { "text": "kazisharif.dev", "url": "https://www.kazisharif.dev/" }
+    {
+      "text": "github.com/kazi331",
+      "url": "https://github.com/kazi331"
+    },
+    {
+      "text": "linkedin.com/in/kazi331",
+      "url": "https://www.linkedin.com/in/kazi331"
+    },
+    {
+      "text": "kazisharif.dev",
+      "url": "https://www.kazisharif.dev/"
+    }
   ],
   "summary": "Full Stack Developer with 3+ years building scalable, high-performance web applications using TypeScript/JavaScript, React, and Node.js. Experienced with REST API design, JWT-based authentication, and relational databases (PostgreSQL, MySQL) via Prisma ORM and TypeORM, including hands-on NestJS backend development. Solo-shipped a production Shopify app end-to-end — frontend, backend, and database — and collaborate closely with cross-functional teams to design, test, and deploy clean, efficient code. Comfortable with Git-based version control and troubleshooting/debugging production systems.",
   "skills": [
-    { "label": "Frontend", "value": "React.js, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3" },
-    { "label": "Backend", "value": "Node.js, Express.js, NestJS, REST API Design, JWT Authentication" },
-    { "label": "Databases", "value": "PostgreSQL, MySQL, SQL, Prisma ORM, TypeORM" },
-    { "label": "Web Fundamentals", "value": "JSON, Cookies, Asynchronous Programming, TanStack Query" },
-    { "label": "Tools & Practices", "value": "Git, Docker, GitHub Actions (CI/CD), Agile/Scrum" }
+    {
+      "label": "Frontend",
+      "value": "React.js, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3"
+    },
+    {
+      "label": "Backend",
+      "value": "Node.js, Express.js, NestJS, REST API Design, JWT Authentication"
+    },
+    {
+      "label": "Databases",
+      "value": "PostgreSQL, MySQL, SQL, Prisma ORM, TypeORM"
+    },
+    {
+      "label": "Web Fundamentals",
+      "value": "JSON, Cookies, Asynchronous Programming, TanStack Query"
+    },
+    {
+      "label": "Tools & Practices",
+      "value": "Git, Docker, GitHub Actions (CI/CD), Agile/Scrum"
+    }
   ],
   "experience": [
     {
@@ -33,7 +57,10 @@
       "title": "Full Stack Developer (Frontend Lead)",
       "dates": "Sept 2024 – July 2025",
       "company": "Tutorsplan Corp · Dhaka",
-      "companyLink": { "text": "tutorsplan.com", "url": "http://tutorsplan.com/" },
+      "companyLink": {
+        "text": "tutorsplan.com",
+        "url": "http://tutorsplan.com/"
+      },
       "bullets": [
         "Partnered with the backend engineer on Prisma/PostgreSQL schema design and REST API endpoints for a NestJS-backed tutor/student portal.",
         "Led the frontend team and implemented Redux for global state management, cutting API round-trips by 40%."
@@ -80,12 +107,26 @@
     }
   ],
   "education": [
-    { "degree": "B.A. English Language and Literature", "school": "Govt. Safar Ali College, 2023" },
-    { "degree": "HSC, Science", "school": "Mosharrof Hossain Khan Chowdhury University College, 2017" }
+    {
+      "degree": "B.A. English Language and Literature",
+      "school": "Govt. Safar Ali College, 2023"
+    },
+    {
+      "degree": "HSC, Science",
+      "school": "Mosharrof Hossain Khan Chowdhury University College, 2017"
+    }
   ],
   "languages": "Bengali (Native)  |  English (Fluent)",
   "references": [
-    { "name": "Rahiyan Safin", "title": "Senior Software Engineer, Techjays", "email": "rahiyansafin@gmail.com" },
-    { "name": "Jerome Stephan", "title": "Founder, Approveage Inc.", "email": "jerome.ramsay@gmail.com" }
+    {
+      "name": "Rahiyan Safin",
+      "title": "Senior Software Engineer, Techjays",
+      "email": "rahiyansafin@gmail.com"
+    },
+    {
+      "name": "Jerome Stephan",
+      "title": "Founder, Approveage Inc.",
+      "email": "jerome.ramsay@gmail.com"
+    }
   ]
 }

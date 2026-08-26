@@ -1,22 +1,21 @@
-# Local Resume PDF Generator
+# Resume PDF Generator
 
-Turns `resume-data.json` into `Resume.pdf` using pure Python — no LibreOffice,
-no Word, no Node.js. One dependency (`reportlab`), one script.
+Turns resume content into `Resume.pdf` using pure Python (`reportlab`) —
+no LibreOffice, no Word, no Node.js. Matches the exact fonts, sizes,
+colors, and margins used throughout this project.
 
-This version matches the exact fonts, sizes, colors, and margins used in
-the earlier Word/docx-generated resumes.
+Two ways to use it:
+- **CLI** (`generate_resume.py`) — edit a JSON file, run a script.
+- **Web app** (`app.py`) — a form in your browser, paste and click, PDF downloads.
+  Same underlying code (`resume_pdf.py`), so output is identical either way.
 
 ## Font note
 
-Calibri itself is a Microsoft-licensed font that can't be freely bundled
-with a script like this. Instead, `fonts/` includes **Carlito** — an
-open-source (SIL Open Font License) font built specifically to be
-metrically identical to Calibri (same letter widths and spacing). This is
-the same substitution LibreOffice itself makes automatically when Calibri
-isn't installed on a machine, so it's a well-established stand-in, not a
-rough approximation. The font is embedded directly in the generated PDF,
-so it'll look identical on any machine that opens it — you don't need
-Carlito or Calibri installed to view the result correctly.
+Calibri itself is Microsoft-licensed and can't be freely bundled. `fonts/`
+instead includes **Carlito** — an open-source (SIL OFL) font built to be
+metrically identical to Calibri. This is the same substitution LibreOffice
+makes automatically when Calibri isn't installed. The font is embedded
+directly in the PDF, so it displays correctly on any machine.
 
 ## One-time setup
 
@@ -24,70 +23,104 @@ Carlito or Calibri installed to view the result correctly.
 pip install -r requirements.txt
 ```
 
-(If `pip` isn't found, try `pip3`. If Python itself isn't installed, get
-it from https://python.org — 3.9+ works fine.)
+(Use `pip3` if `pip` isn't found. Get Python 3.9+ from https://python.org
+if you don't have it.)
 
-## Usage
-
-Whenever I tailor your resume for a new JD going forward, I'll give you the
-full updated content of `resume-data.json` directly in chat — just replace
-the file's contents with what I give you, then run:
+## Option A — Command line
 
 ```bash
 python generate_resume.py
 ```
 
-This writes `Resume.pdf` in the same folder. Takes under a second, no
-internet connection needed after the initial `pip install`.
+Reads `resume-data.json`, writes `<Title>_Resume.pdf` in the same folder.
+Whenever I tailor your resume for a new JD, I'll give you the full updated
+`resume-data.json` content to paste in before you re-run this.
 
-## Editing content yourself
+## Option B — Web app (run locally)
 
-Same as before — `resume-data.json` is plain, readable fields:
+```bash
+python app.py
+```
+
+Then open **http://localhost:5000**. You'll see a textarea pre-filled with
+your current resume data — edit it, click **Generate & Download PDF**, and
+the browser downloads the file directly. Every generate also saves your
+edits back into `resume-data.json`, so the next time you open the page (or
+run the CLI), it starts from your latest version.
+
+## Hosting it somewhere (so you don't run anything locally)
+
+This is a standard Flask app, so any Python host works. A few
+straightforward, free-tier-friendly options:
+
+### Render.com (easiest)
+1. Push this folder to a GitHub repo.
+2. On Render: **New → Web Service**, connect the repo.
+3. Build command: `pip install -r requirements.txt`
+4. Start command: `gunicorn app:app` (already in the included `Procfile`,
+   Render detects this automatically)
+5. Deploy — Render gives you a public URL.
+
+### Railway.app
+1. Push to GitHub, then **New Project → Deploy from GitHub repo** on Railway.
+2. Railway auto-detects the `Procfile` and `requirements.txt` — no config needed.
+3. Deploy — Railway gives you a public URL.
+
+### PythonAnywhere (good if you want a permanently free tier)
+1. Upload the folder (or `git clone` your repo) in a Bash console there.
+2. `pip install -r requirements.txt --user`
+3. Set up a new Flask web app pointing at `app.py` in the dashboard's
+   "Web" tab (PythonAnywhere's wizard asks for the entry file — pick this
+   one and the `app` variable inside it).
+
+### Fly.io
+Needs a `Dockerfile`, which isn't included here since the above three are
+simpler for this size of app — ask if you'd like one added.
+
+## Persisted data across restarts
+
+`resume-data.json` is a plain file on disk. On most free hosting tiers,
+the filesystem resets on redeploy, so treat the web form as a place to
+*generate* PDFs, not as permanent storage — keep the JSON you're actively
+using saved on your own machine too (or in the repo you deployed from) so
+a redeploy doesn't lose your latest edits.
+
+## Editing content
+
+`resume-data.json` fields:
 
 - `name`, `title`, `location`, `phone`, `email` — header info
 - `links` — list of `{text, url}` pairs (GitHub, LinkedIn, site)
 - `summary` — one paragraph
 - `skills` — list of `{label, value}` rows
-- `experience` — list of jobs, each with `title`, `dates`, `company`,
-  optional `companyLink` (`{text, url}` or `null`), and a `bullets` list
-- `projects` — list with `title`, optional `link` (or `null`), `description`, `stack`
+- `experience` — list of jobs: `title`, `dates`, `company`, optional
+  `companyLink` (`{text, url}` or `null`), and a `bullets` list
+- `projects` — list: `title`, optional `link` (or `null`), `description`, `stack`
 - `education` — list of `{degree, school}`
 - `languages` — one line
 - `references` — list of `{name, title, email}`
 
-Edit any field, save, re-run the script. If a job has no company link, set
-`"companyLink": null`. If a project has no live link, set `"link": null`.
+## Changing the design
 
-## Changing the design (fonts, colors, spacing, margins)
+Open `resume_pdf.py` — the `LAYOUT SETTINGS` section near the top controls
+colors (`NAVY_HEX`, `GRAY_HEX`, `LINK_HEX`), margins (`MARGIN_TOP` etc.),
+and font sizes (`SIZE` dict). Both the CLI and web app pick up changes
+here automatically since they share this one file.
 
-Open `generate_resume.py` — everything under the `LAYOUT SETTINGS` comment
-near the top controls appearance:
-
-- `NAVY_HEX`, `GRAY_HEX`, `LINK_HEX`, `LIGHTLINE_HEX` — colors
-- `MARGIN_TOP`/`BOTTOM`/`LEFT`/`RIGHT` — page margins
-- `SIZE` — font sizes in points for each element
-- The `styles` dictionary — line spacing (`leading`) and spacing
-  before/after each element (`spaceBefore`/`spaceAfter`), in points
-
-If content grows and it spills to a second page, either trim a bullet or
-two, or shave a bit off the relevant `SIZE` entries and re-run. The script
-doesn't warn you about page count — open the PDF after any edit to check.
-
-## Why this instead of the old Node.js + LibreOffice setup
-
-That version needed two separate tools (Node.js for building the .docx,
-LibreOffice for converting it to PDF) and produced a .docx you didn't need.
-This version is one Python script that goes straight to PDF, with the
-fonts bundled in, so there's nothing else to install.
+If content grows past one page, trim a bullet or shave a bit off the
+`SIZE` values — neither the script nor the web app warns about page count,
+so check the output after edits.
 
 ## Folder structure
 
 ```
 local-resume-pdf/
-├── resume-data.json     ← edit this for content changes
-├── generate_resume.py   ← layout/logic (rarely needs touching)
+├── resume_pdf.py         ← shared PDF-building logic (fonts, layout, styling)
+├── generate_resume.py    ← CLI entry point
+├── app.py                ← web app entry point
+├── templates/index.html  ← web form UI
+├── resume-data.json      ← your content — edit this
 ├── requirements.txt
-├── fonts/               ← bundled Carlito font files + OFL license
-└── Resume.pdf           ← generated output
+├── Procfile               ← for Render/Railway-style deploys
+└── fonts/                ← bundled Carlito font files + OFL license
 ```
-
