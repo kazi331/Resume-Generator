@@ -112,6 +112,10 @@
 
     #status.ok {
       color: #b7f0c9;
+      width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Mobile tab toggle (hidden on desktop) */
@@ -154,17 +158,12 @@
       border-right: 1px solid #ddd; */
     }
 
-    .editor-pane textarea {
+    #editor {
       flex: 1;
       width: 100%;
-      font-family: "SF Mono", Consolas, Monaco, monospace;
-      font-size: 12.5px;
-      line-height: 1.5;
-      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      resize: none;
-      background: #fafbfc;
+      overflow: hidden;
     }
 
     .editor-pane .hint {
@@ -345,8 +344,8 @@
         padding: 14px;
       }
 
-      .editor-pane textarea {
-        font-size: 12px;
+      #editor {
+        min-height: 0;
       }
 
       .preview-pane {
@@ -387,7 +386,7 @@
   <div class="layout showEditorOnly" id="layout">
     <div class="editor-pane">
       <div id="jsonError"></div>
-      <textarea id="resumeJson" spellcheck="false">{{ resume_json }}</textarea>
+      <div id="editor" role="textbox" aria-label="Resume JSON editor"></div>
       <p class="hint">Edits update the preview instantly and save to resume-data.json when you generate a PDF.</p>
     </div>
 
@@ -396,8 +395,10 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+  <script type="application/json" id="initialResumeJson">{{ resume_json | tojson }}</script>
   <script>
-    const textarea = document.getElementById('resumeJson');
+    let editor;
     const pageEl = document.getElementById('page');
     const jsonErrorEl = document.getElementById('jsonError');
     const statusEl = document.getElementById('status');
@@ -471,7 +472,7 @@
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         try {
-          const data = JSON.parse(textarea.value);
+          const data = JSON.parse(editor.getValue());
           renderPreview(data);
           jsonErrorEl.style.display = 'none';
         } catch (e) {
@@ -481,8 +482,26 @@
       }, 250);
     }
 
-    textarea.addEventListener('input', scheduleUpdate);
-    scheduleUpdate(); // initial render
+    require.config({
+      paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs' }
+    });
+    require(['vs/editor/editor.main'], () => {
+      editor = monaco.editor.create(document.getElementById('editor'), {
+        value: JSON.parse(document.getElementById('initialResumeJson').textContent),
+        language: 'json',
+        automaticLayout: true,
+        minimap: { enabled: false },
+        fontSize: 12,
+        lineNumbers: 'on',
+        scrollBeyondLastLine: false,
+        tabSize: 2,
+        formatOnPaste: true,
+        formatOnType: true,
+        theme: 'vs'
+      });
+      editor.onDidChangeModelContent(scheduleUpdate);
+      scheduleUpdate();
+    });
 
     // Mobile tab toggle
     tabEditor.addEventListener('click', () => {
@@ -506,7 +525,7 @@
 
       try {
         const formData = new FormData();
-        formData.append('resume_json', textarea.value);
+        formData.append('resume_json', editor.getValue());
         const resp = await fetch('/generate', { method: 'POST', body: formData });
 
         if (!resp.ok) {
