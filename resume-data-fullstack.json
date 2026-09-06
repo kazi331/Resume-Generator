@@ -57,7 +57,7 @@
       "bullets": [
         "Solo-built a production Shopify app (Mixory Bundles) end to end — Next.js/React frontend, Node.js backend, PostgreSQL database via Prisma — live on the Shopify App Store.",
         "Implemented REST API endpoints for dynamic pricing and cart-transform logic via Shopify Functions, with a strong focus on clean, debuggable code.",
-        "Used Docker for local development environments and Claude Code/Cursor as a daily part of the development workflow."
+        "Containerized local development with Docker, standardizing the development environment and reducing environment-specific setup issues."
       ]
     },
     {
@@ -114,6 +114,38 @@
       "link": "https://play.google.com/store/apps/details?id=com.approveage&hl=en",
       "description": "Auth, document upload, real-time notifications via Firebase.",
       "stack": "React Native, Redux, Firebase, REST API"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Introduction to Docker",
+      "issuer": "DataCamp",
+      "completedDate": "June 2026",
+      "url": "https://www.datacamp.com/statement-of-accomplishment/course/0363f9f0f14bd98d27948149dfdc7466717e66fe?raw=1"
+    },
+    {
+      "name": "Intermediate Docker",
+      "issuer": "DataCamp",
+      "completedDate": "July 2026",
+      "url": "https://www.datacamp.com/statement-of-accomplishment/course/2f8bda46a9eed9d42a07195798c797848c3d519a?raw=1"
+    },
+    {
+      "name": "Learn Linux",
+      "issuer": "Boot.dev",
+      "completedDate": "July 2026",
+      "url": "https://www.boot.dev/certificates/a452e6c7-8f5a-49cc-be66-322b50db9265"
+    },
+    {
+      "name": "Introduction to Python",
+      "issuer": "Boot.dev",
+      "completedDate": "August 2026",
+      "url": "https://www.boot.dev/certificates/fc11106e-bd26-4fe5-b204-c47fe76f2b23"
+    },
+    {
+      "name": "Think in a Redux Way",
+      "issuer": "LWS",
+      "completedDate": "April 2023",
+      "url": "https://learnwithsumit.com/reports/LWSCTXN-I7ZSR07E"
     }
   ],
   "education": [

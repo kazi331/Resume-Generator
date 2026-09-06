@@ -42,7 +42,7 @@ loads the other profile's JSON and does not overwrite your previous edits.
 
 The default profile files are:
 
-- `resume-data.json` - Full Stack resume
+- `resume-data-fullstack.json` - Full Stack resume
 - `resume-data-frontend.json` - Frontend resume
 
 ## JSON Content
@@ -68,4 +68,4 @@ To generate a PDF directly from the Full Stack profile:
 python generate_resume.py
 ```
 
-The PDF is created in the project folder using the data in `resume-data.json`.
+The PDF is created in the project folder using the data in `resume-data-fullstack.json`.

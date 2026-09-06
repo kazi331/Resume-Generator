@@ -350,6 +350,12 @@
       margin: 0 0 1.5pt 0;
     }
 
+    #page .cert-line {
+      font-size: 8.5pt;
+      line-height: 1.32;
+      margin: 0 0 1pt 0;
+    }
+
     #page .ref-line {
       font-size: 8pt;
     }
@@ -501,6 +507,12 @@
         const titleHtml = `<b style="color:var(--navy)">${escapeHtml(p.title)}</b>`
           + (p.link ? ` (${linkHtml(linkLabel(p.link), p.link)})` : '');
         html += `<div class="project-line">${titleHtml}<br>&bull; ${escapeHtml(p.description)} <i>Stack: ${escapeHtml(p.stack)}</i></div>`;
+      });
+
+      html += `<div class="section-heading">Certifications</div>`;
+      (data.certifications || []).forEach(cert => {
+        const certLink = cert.url ? ` (${linkHtml('Certificate', cert.url)})` : '';
+        html += `<div class="cert-line"><b>${escapeHtml(cert.name)}</b> — ${escapeHtml(cert.issuer)}, ${escapeHtml(cert.completedDate)}${certLink}</div>`;
       });
 
       html += `<div class="section-heading">Education &amp; Languages</div>`;

@@ -302,6 +302,19 @@ def build_resume_pdf(data, output_path=None):
         )
         story.append(Spacer(1, 1.5))
 
+    story += _section_heading("Certifications", styles)
+    for cert in data.get("certifications", []):
+        certificate_link = (
+            f" ({_link_run('Certificate', cert['url'])})" if cert.get("url") else ""
+        )
+        story.append(
+            Paragraph(
+                f"<b>{cert['name']}</b> — {cert['issuer']}, "
+                f"{cert['completedDate']}{certificate_link}",
+                styles["small"],
+            )
+        )
+
     story += _section_heading("Education & Languages", styles)
     edu_text = "   |   ".join(
         f"{e['degree']} — {e['school']}" for e in data["education"]
