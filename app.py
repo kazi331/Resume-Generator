@@ -8,42 +8,71 @@ Local run:
 
 Deployment: see README.md for hosting options (Render, Railway, PythonAnywhere, Fly.io).
 """
+
+import io
 import json
 import os
-from flask import Flask, render_template, request, send_file, jsonify
-import io
+from typing import Any
+
+from flask import Flask, jsonify, render_template, request, send_file
 
 from resume_pdf import build_resume_pdf, slugify_filename
 
 app = Flask(__name__)
 
-DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resume-data.json")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROFILES: dict[str, dict[str, str]] = {
+    "fullstack": {"label": "Full Stack", "filename": "resume-data.json"},
+    "frontend": {"label": "Frontend", "filename": "resume-data-frontend.json"},
+}
 
 
-def load_data():
-    with open(DATA_PATH, "r", encoding="utf-8") as f:
+def profile_path(profile: str) -> str:
+    if profile not in PROFILES:
+        raise KeyError(profile)
+    return os.path.join(BASE_DIR, PROFILES[profile]["filename"])
+
+
+def load_data(profile: str) -> str:
+    with open(profile_path(profile), "r", encoding="utf-8") as f:
         return f.read()
 
 
-def save_data(raw_text):
+def save_data(profile: str, raw_text: str) -> Any:
     # Validate it's parseable JSON before persisting
     parsed = json.loads(raw_text)
-    with open(DATA_PATH, "w", encoding="utf-8") as f:
+    with open(profile_path(profile), "w", encoding="utf-8") as f:
         json.dump(parsed, f, indent=2, ensure_ascii=False)
     return parsed
 
 
 @app.route("/", methods=["GET"])
 def index():
-    current_json = load_data()
-    return render_template("index.html", resume_json=current_json)
+    current_profile = "fullstack"
+    return render_template(
+        "index.html",
+        resume_json=load_data(current_profile),
+        profiles=PROFILES,
+        current_profile=current_profile,
+    )
+
+
+@app.route("/profile/<profile>", methods=["GET"])
+def profile(profile: str):
+    try:
+        return jsonify(json.loads(load_data(profile)))
+    except (KeyError, json.JSONDecodeError):
+        return jsonify({"error": "Unknown or invalid resume profile."}), 404
 
 
 @app.route("/generate", methods=["POST"])
 def generate():
     raw_text = request.form.get("resume_json", "")
+    selected_profile = request.form.get("profile", "fullstack")
     try:
-        data = save_data(raw_text)
+        data = save_data(selected_profile, raw_text)
+    except KeyError:
+        return jsonify({"error": "Unknown resume profile."}), 400
     except json.JSONDecodeError as e:
         return jsonify({"error": f"Invalid JSON: {e}"}), 400
 

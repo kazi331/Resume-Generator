@@ -84,12 +84,40 @@
       gap: 10px;
     }
 
+    .profile-actions {
+      display: flex;
+      align-items: stretch;
+    }
+
+    #profileSelect {
+      background: white;
+      color: var(--navy);
+      border: none;
+      border-radius: 6px 0 0 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     button#generateBtn {
       background: white;
       color: var(--navy);
       border: none;
       padding: 8px 16px;
-      border-radius: 6px;
+      border-left: 1px solid #d7dce2;
+      border-radius: 0 6px 6px 0;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
@@ -373,7 +401,15 @@
     <h1>Resume PDF Generator</h1>
     <div class="actions">
       <span id="status"></span>
-      <button id="generateBtn">Generate &amp; Download PDF</button>
+      <div class="profile-actions">
+        <label for="profileSelect" class="sr-only">Resume profile</label>
+        <select id="profileSelect">
+          {% for key, profile in profiles.items() %}
+          <option value="{{ key }}" {% if key==current_profile %} selected{% endif %}>{{ profile.label }}</option>
+          {% endfor %}
+        </select>
+        <button id="generateBtn">Generate &amp; Download PDF</button>
+      </div>
     </div>
   </header>
 
@@ -386,7 +422,7 @@
     <div class="editor-pane">
       <div id="jsonError"></div>
       <div id="editor" role="textbox" aria-label="Resume JSON editor"></div>
-      <p class="hint">Edits update the preview instantly and save to resume-data.json when you generate a PDF.</p>
+      <p class="hint">Edits update the preview instantly and save to the selected profile when you generate a PDF.</p>
     </div>
 
     <div class="preview-pane">
@@ -402,6 +438,7 @@
     const jsonErrorEl = document.getElementById('jsonError');
     const statusEl = document.getElementById('status');
     const generateBtn = document.getElementById('generateBtn');
+    const profileSelect = document.getElementById('profileSelect');
     const layoutEl = document.getElementById('layout');
     const tabEditor = document.getElementById('tabEditor');
     const tabPreview = document.getElementById('tabPreview');
@@ -510,6 +547,25 @@
       scheduleUpdate();
     });
 
+    profileSelect.addEventListener('change', async () => {
+      const selectedProfile = profileSelect.value;
+      profileSelect.disabled = true;
+
+      try {
+        const resp = await fetch(`/profile/${encodeURIComponent(selectedProfile)}`);
+        if (!resp.ok) {
+          throw new Error('Could not load profile.');
+        }
+        const data = await resp.json();
+        editor.setValue(JSON.stringify(data, null, 2));
+      } catch (err) {
+        statusEl.textContent = err.message;
+        statusEl.className = 'error';
+      } finally {
+        profileSelect.disabled = false;
+      }
+    });
+
     // Mobile tab toggle
     tabEditor.addEventListener('click', () => {
       tabEditor.classList.add('active');
@@ -533,6 +589,7 @@
       try {
         const formData = new FormData();
         formData.append('resume_json', editor.getValue());
+        formData.append('profile', profileSelect.value);
         const resp = await fetch('/generate', { method: 'POST', body: formData });
 
         if (!resp.ok) {
