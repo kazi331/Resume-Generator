@@ -208,7 +208,7 @@
     }
 
     #page h1.name {
-      text-align: center;
+      text-align: left;
       color: var(--navy);
       font-weight: 700;
       font-size: 18pt;
@@ -216,22 +216,21 @@
     }
 
     #page .title {
-      text-align: center;
+      text-align: left;
       font-weight: 700;
       font-size: 10.5pt;
       color: var(--gray);
       margin: 2pt 0 3pt 0;
     }
 
-    #page .contact,
-    #page .links {
-      text-align: center;
+    #page .contact {
+      text-align: left;
       font-size: 8.5pt;
       margin: 0 0 1.5pt 0;
     }
 
     #page a {
-      color: var(--link);
+      color: inherit;
       text-decoration: underline;
     }
 
@@ -417,6 +416,14 @@
       return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(text)}</a>`;
     }
 
+    function linkLabel(url) {
+      try {
+        return new URL(url).hostname.replace(/^www\./, '');
+      } catch {
+        return url;
+      }
+    }
+
     function renderPreview(data) {
       const links = (data.links || []).map(l => linkHtml(l.text, l.url)).join('  |  ');
       const emailLink = data.email ? linkHtml(data.email, 'mailto:' + data.email) : '';
@@ -424,8 +431,7 @@
       let html = '';
       html += `<h1 class="name">${escapeHtml(data.name || '')}</h1>`;
       html += `<div class="title">${escapeHtml(data.title || '')}</div>`;
-      html += `<div class="contact">${escapeHtml(data.location || '')}  |  ${escapeHtml(data.phone || '')}  |  ${emailLink}</div>`;
-      html += `<div class="links">${links}</div>`;
+      html += `<div class="contact">${escapeHtml(data.location || '')}  |  ${escapeHtml(data.phone || '')}  |  ${emailLink}  |  ${links}</div>`;
       // html += `<hr class="top-divider">`;
 
       html += `<div class="section-heading">Summary</div>`;
@@ -451,8 +457,9 @@
 
       html += `<div class="section-heading">Key Projects</div>`;
       (data.projects || []).forEach(p => {
-        const titleHtml = p.link ? linkHtml(p.title, p.link) : `<b style="color:var(--navy)">${escapeHtml(p.title)}</b>`;
-        html += `<div class="project-line">${titleHtml}: ${escapeHtml(p.description)} <i>Stack: ${escapeHtml(p.stack)}</i></div>`;
+        const titleHtml = `<b style="color:var(--navy)">${escapeHtml(p.title)}</b>`
+          + (p.link ? ` (${linkHtml(linkLabel(p.link), p.link)})` : '');
+        html += `<div class="project-line">${titleHtml}<br>&bull; ${escapeHtml(p.description)} <i>Stack: ${escapeHtml(p.stack)}</i></div>`;
       });
 
       html += `<div class="section-heading">Education &amp; Languages</div>`;
