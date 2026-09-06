@@ -55,7 +55,6 @@ Each profile contains the resume sections used by the generator:
 - Work experience and bullet points
 - Projects and technology stacks
 - Education and languages
-- References
 
 Keep the JSON valid when pasting or editing it. The preview will pause and
 show an error until invalid JSON is corrected.

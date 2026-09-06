@@ -25,9 +25,9 @@
       "url": "https://www.boot.dev/certificates/fc11106e-bd26-4fe5-b204-c47fe76f2b23"
     },
     {
-      "name": "Think in a Redux Way",
-      "issuer": "LWS",
       "completedDate": "April 2023",
+      "issuer": "LWS",
+      "name": "Think in a Redux Way",
       "url": "https://learnwithsumit.com/reports/LWSCTXN-I7ZSR07E"
     }
   ],
@@ -132,44 +132,32 @@
       "title": "Maison: The Property App"
     }
   ],
-  "references": [
-    {
-      "email": "rahiyansafin@gmail.com",
-      "name": "Rahiyan Safin",
-      "title": "Senior Software Engineer, Techjays"
-    },
-    {
-      "email": "jerome.ramsay@gmail.com",
-      "name": "Jerome Stephan",
-      "title": "Founder, Approveage Inc."
-    }
-  ],
   "skills": [
     {
       "label": "Frontend",
-      "value": "React.js, Next.js (App Router, Server Components, SSR/SSG/ISR), TypeScript, JavaScript (ES6+), Component Architecture"
+      "value": "React.js, Next.js (App Router), TypeScript, JavaScript (ES6+), Component Architecture"
     },
     {
       "label": "State & Data",
-      "value": "Redux Toolkit, Zustand, Context API, TanStack Query, SWR, TanStack Table, REST APIs, GraphQL"
+      "value": "Redux Toolkit, TanStack Query, Zustand, Context API, REST APIs"
     },
     {
       "label": "Styling & UI",
-      "value": "Tailwind CSS, Styled-Components, Bootstrap, Ant Design, SASS, Framer Motion, Figma-to-Code"
+      "value": "Tailwind CSS, Styled-Components, Ant Design, SCSS, Framer Motion, Responsive Design, ShadCN UI"
     },
     {
       "label": "Testing & Quality",
-      "value": "Jest, React Testing Library, Cypress, Web Performance, Accessibility (a11y), Cross-Browser Compatibility"
+      "value": "Vitest, Web Performance, Accessibility (a11y), Cross-Browser Compatibility"
+    },
+    {
+      "label": "DevOps & Tools",
+      "value": "Linux, Docker, GitHub Actions (CI/CD), Git, GitHub, Debugging"
     },
     {
       "label": "AI-Assisted Development",
-      "value": "Claude Code, Cursor, GitHub Copilot — daily workflow, including parallel agent orchestration"
-    },
-    {
-      "label": "Tools & Practices",
-      "value": "Git, Docker, GitHub Actions (CI/CD), Code Reviews, Agile/Scrum"
+      "value": "Claude Code, Cursor, GitHub Copilot"
     }
   ],
-  "summary": "Frontend Developer with 3+ years building scalable, high-performance applications with React.js, Next.js, and TypeScript. Specializes in component architecture, state and data management, and pixel-perfect, responsive, accessible interfaces. Solo-shipped a production e-commerce app, led a frontend team through mentoring and code review, and uses AI-assisted development with rigorous technical review.",
+  "summary": "Frontend Developer with 3+ years of experience building high-performance applications with React.js, Next.js, and TypeScript. Focused on component architecture, state management, performance, and accessible, responsive interfaces.",
   "title": "Frontend Developer — React.js / Next.js / TypeScript"
 }

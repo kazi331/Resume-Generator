@@ -356,10 +356,6 @@
       margin: 0 0 1pt 0;
     }
 
-    #page .ref-line {
-      font-size: 8pt;
-    }
-
     /* --- Responsive: stack on mobile, tab-toggle between editor/preview --- */
     @media (max-width: 900px) {
       .tabbar {
@@ -519,10 +515,6 @@
       const eduText = (data.education || []).map(e => `${escapeHtml(e.degree)} — ${escapeHtml(e.school)}`).join('   |   ');
       html += `<div class="edu-line">${eduText}</div>`;
       html += `<div class="lang-line">${escapeHtml(data.languages || '')}</div>`;
-
-      html += `<div class="section-heading">References</div>`;
-      const refText = (data.references || []).map(r => `${escapeHtml(r.name)} — ${escapeHtml(r.title)} — ${escapeHtml(r.email)}`).join('   |   ');
-      html += `<div class="ref-line">${refText}</div>`;
 
       pageEl.innerHTML = html;
     }

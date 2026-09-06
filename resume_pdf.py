@@ -322,12 +322,6 @@ def build_resume_pdf(data, output_path=None):
     story.append(Paragraph(edu_text, styles["company"]))
     story.append(Paragraph(data["languages"], styles["company"]))
 
-    story += _section_heading("References", styles)
-    ref_text = "   |   ".join(
-        f"{r['name']} — {r['title']} — {r['email']}" for r in data["references"]
-    )
-    story.append(Paragraph(ref_text, styles["small"]))
-
     doc_kwargs = dict(
         pagesize=letter,
         topMargin=MARGIN_TOP,

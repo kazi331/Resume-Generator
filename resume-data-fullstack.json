@@ -1,9 +1,100 @@
 {
-  "name": "KAZI SHARIFUL ISLAM",
-  "title": "Full Stack Developer — Node.js / Next.js",
-  "location": "Mirpur, Dhaka, Bangladesh",
-  "phone": "+8801612-178331",
+  "certifications": [
+    {
+      "completedDate": "June 2026",
+      "issuer": "DataCamp",
+      "name": "Introduction to Docker",
+      "url": "https://www.datacamp.com/statement-of-accomplishment/course/0363f9f0f14bd98d27948149dfdc7466717e66fe?raw=1"
+    },
+    {
+      "completedDate": "July 2026",
+      "issuer": "DataCamp",
+      "name": "Intermediate Docker",
+      "url": "https://www.datacamp.com/statement-of-accomplishment/course/2f8bda46a9eed9d42a07195798c797848c3d519a?raw=1"
+    },
+    {
+      "completedDate": "July 2026",
+      "issuer": "Boot.dev",
+      "name": "Learn Linux",
+      "url": "https://www.boot.dev/certificates/a452e6c7-8f5a-49cc-be66-322b50db9265"
+    },
+    {
+      "completedDate": "August 2026",
+      "issuer": "Boot.dev",
+      "name": "Introduction to Python",
+      "url": "https://www.boot.dev/certificates/fc11106e-bd26-4fe5-b204-c47fe76f2b23"
+    },
+    {
+      "completedDate": "April 2023",
+      "issuer": "LWS",
+      "name": "Think in a Redux Way",
+      "url": "https://learnwithsumit.com/reports/LWSCTXN-I7ZSR07E"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.A. English Language and Literature",
+      "school": "Govt. Safar Ali College, 2023"
+    },
+    {
+      "degree": "HSC, Science",
+      "school": "Mosharrof Hossain Khan Chowdhury University College, 2017"
+    }
+  ],
   "email": "kazisharif.dev@gmail.com",
+  "experience": [
+    {
+      "bullets": [
+        "Solo-built a production Shopify app (Mixory Bundles) end to end — Next.js/React frontend, Node.js backend, PostgreSQL database via Prisma — live on the Shopify App Store.",
+        "Implemented REST API endpoints for dynamic pricing and cart-transform logic via Shopify Functions, with a strong focus on clean, debuggable code.",
+        "Containerized local development with Docker, standardizing the development environment and reducing environment-specific setup issues."
+      ],
+      "company": "Devsnest OPC · Dhaka",
+      "companyLink": {
+        "text": "devsnest.net",
+        "url": "https://devsnest.net/"
+      },
+      "dates": "Oct 2025 – Present",
+      "title": "Software Engineer"
+    },
+    {
+      "bullets": [
+        "Led the frontend team on a Next.js tutor/student portal, running code reviews and managing Git branching/PR workflows across the team.",
+        "Partnered with the backend engineer on Prisma/PostgreSQL schema design and REST API endpoints for the NestJS backend."
+      ],
+      "company": "Tutorsplan Corp · Dhaka",
+      "companyLink": {
+        "text": "tutorsplan.com",
+        "url": "http://tutorsplan.com/"
+      },
+      "dates": "Sept 2024 – July 2025",
+      "title": "Full Stack Developer (Frontend Lead)"
+    },
+    {
+      "bullets": [
+        "Migrated 3 projects from Webflow to React/Next.js (flight/hotel booking sites, B2B/B2C sales portals), improving performance by 60%.",
+        "Optimized data fetching/caching with TanStack Query, cutting page load time by 30%."
+      ],
+      "company": "Dhali Overseas Limited · Dhaka",
+      "companyLink": {
+        "text": "laststop.live",
+        "url": "https://laststop.live/"
+      },
+      "dates": "Apr 2024 – Aug 2024",
+      "title": "React/Next.js Developer"
+    },
+    {
+      "bullets": [
+        "Built real-time client/admin communication using Socket.IO and Firebase Cloud Messaging, supporting live data updates and push notifications.",
+        "Optimized client-side data fetching and caching with TanStack Query, improving application response speed by 30%."
+      ],
+      "company": "Approveage Inc · Toronto (Remote)",
+      "companyLink": null,
+      "dates": "Mar 2023 – Mar 2024",
+      "title": "Frontend Engineer"
+    }
+  ],
+  "languages": "Bengali (Native)  |  English (Fluent)",
   "links": [
     {
       "text": "github.com/kazi331",
@@ -18,7 +109,29 @@
       "url": "https://www.kazisharif.dev/"
     }
   ],
-  "summary": "Full Stack Software Engineer with 3+ years of professional experience in Node.js, TypeScript, and Next.js, building and shipping production web applications end to end. Comfortable with REST API design, database fundamentals, and Git/GitHub-based branching, PRs, and code review workflows. Solo-shipped a production Shopify app spanning frontend, backend, and database layers, and uses Docker daily alongside AI-assisted development tools (Claude Code, Cursor, GitHub Copilot) as a core part of the development workflow. Strong debugging instincts and a consistent focus on clean, maintainable code.",
+  "location": "Mirpur, Dhaka, Bangladesh",
+  "name": "KAZI SHARIFUL ISLAM",
+  "phone": "+8801612-178331",
+  "projects": [
+    {
+      "description": "Solo-built bundle/checkout app for Shopify merchants, end-to-end — DB design to storefront UI.",
+      "link": "https://mixory-bundles.com/",
+      "stack": "Next.js, React, Node.js, Prisma, PostgreSQL, Shopify Functions",
+      "title": "Mixory Bundles — Shopify App"
+    },
+    {
+      "description": "Course search/enrollment, progress tracking, real-time chat, admin panel.",
+      "link": null,
+      "stack": "Next.js 14, Redux, TanStack Query, NestJS, Tailwind CSS",
+      "title": "EdTech Learning Platform"
+    },
+    {
+      "description": "Auth, document upload, real-time notifications via Firebase.",
+      "link": "https://play.google.com/store/apps/details?id=com.approveage&hl=en",
+      "stack": "React Native, Redux, Firebase, REST API",
+      "title": "Maison: The Property App"
+    }
+  ],
   "skills": [
     {
       "label": "Languages",
@@ -38,138 +151,13 @@
     },
     {
       "label": "AI-Assisted Development",
-      "value": "Claude Code, Cursor, GitHub Copilot — daily workflow"
+      "value": "Claude Code, Cursor, GitHub Copilot"
     },
     {
-      "label": "Tools & Practices",
-      "value": "Git, GitHub (branching, PRs, code review), Docker, GitHub Actions (CI/CD), Debugging"
+      "label": "DevOps & Systems",
+      "value": "Linux, Docker, GitHub Actions (CI/CD), Git, GitHub, Debugging"
     }
   ],
-  "experience": [
-    {
-      "title": "Software Engineer",
-      "dates": "Oct 2025 – Present",
-      "company": "Devsnest OPC · Dhaka",
-      "companyLink": {
-        "text": "devsnest.net",
-        "url": "https://devsnest.net/"
-      },
-      "bullets": [
-        "Solo-built a production Shopify app (Mixory Bundles) end to end — Next.js/React frontend, Node.js backend, PostgreSQL database via Prisma — live on the Shopify App Store.",
-        "Implemented REST API endpoints for dynamic pricing and cart-transform logic via Shopify Functions, with a strong focus on clean, debuggable code.",
-        "Containerized local development with Docker, standardizing the development environment and reducing environment-specific setup issues."
-      ]
-    },
-    {
-      "title": "Full Stack Developer (Frontend Lead)",
-      "dates": "Sept 2024 – July 2025",
-      "company": "Tutorsplan Corp · Dhaka",
-      "companyLink": {
-        "text": "tutorsplan.com",
-        "url": "http://tutorsplan.com/"
-      },
-      "bullets": [
-        "Led the frontend team on a Next.js tutor/student portal, running code reviews and managing Git branching/PR workflows across the team.",
-        "Partnered with the backend engineer on Prisma/PostgreSQL schema design and REST API endpoints for the NestJS backend."
-      ]
-    },
-    {
-      "title": "React/Next.js Developer",
-      "dates": "Apr 2024 – Aug 2024",
-      "company": "Dhali Overseas Limited · Dhaka",
-      "companyLink": {
-        "text": "laststop.live",
-        "url": "https://laststop.live/"
-      },
-      "bullets": [
-        "Migrated 3 projects from Webflow to React/Next.js (flight/hotel booking sites, B2B/B2C sales portals), improving performance by 60%.",
-        "Optimized data fetching/caching with TanStack Query, cutting page load time by 30%."
-      ]
-    },
-    {
-      "title": "Frontend Engineer",
-      "dates": "Mar 2023 – Mar 2024",
-      "company": "Approveage Inc · Toronto (Remote)",
-      "companyLink": null,
-      "bullets": [
-        "Built real-time client/admin communication using Socket.IO and Firebase Cloud Messaging, supporting live data updates and push notifications.",
-        "Optimized client-side data fetching and caching with TanStack Query, improving application response speed by 30%."
-      ]
-    }
-  ],
-  "projects": [
-    {
-      "title": "Mixory Bundles — Shopify App",
-      "link": "https://mixory-bundles.com/",
-      "description": "Solo-built bundle/checkout app for Shopify merchants, end-to-end — DB design to storefront UI.",
-      "stack": "Next.js, React, Node.js, Prisma, PostgreSQL, Shopify Functions"
-    },
-    {
-      "title": "EdTech Learning Platform",
-      "link": null,
-      "description": "Course search/enrollment, progress tracking, real-time chat, admin panel.",
-      "stack": "Next.js 14, Redux, TanStack Query, NestJS, Tailwind CSS"
-    },
-    {
-      "title": "Maison: The Property App",
-      "link": "https://play.google.com/store/apps/details?id=com.approveage&hl=en",
-      "description": "Auth, document upload, real-time notifications via Firebase.",
-      "stack": "React Native, Redux, Firebase, REST API"
-    }
-  ],
-  "certifications": [
-    {
-      "name": "Introduction to Docker",
-      "issuer": "DataCamp",
-      "completedDate": "June 2026",
-      "url": "https://www.datacamp.com/statement-of-accomplishment/course/0363f9f0f14bd98d27948149dfdc7466717e66fe?raw=1"
-    },
-    {
-      "name": "Intermediate Docker",
-      "issuer": "DataCamp",
-      "completedDate": "July 2026",
-      "url": "https://www.datacamp.com/statement-of-accomplishment/course/2f8bda46a9eed9d42a07195798c797848c3d519a?raw=1"
-    },
-    {
-      "name": "Learn Linux",
-      "issuer": "Boot.dev",
-      "completedDate": "July 2026",
-      "url": "https://www.boot.dev/certificates/a452e6c7-8f5a-49cc-be66-322b50db9265"
-    },
-    {
-      "name": "Introduction to Python",
-      "issuer": "Boot.dev",
-      "completedDate": "August 2026",
-      "url": "https://www.boot.dev/certificates/fc11106e-bd26-4fe5-b204-c47fe76f2b23"
-    },
-    {
-      "name": "Think in a Redux Way",
-      "issuer": "LWS",
-      "completedDate": "April 2023",
-      "url": "https://learnwithsumit.com/reports/LWSCTXN-I7ZSR07E"
-    }
-  ],
-  "education": [
-    {
-      "degree": "B.A. English Language and Literature",
-      "school": "Govt. Safar Ali College, 2023"
-    },
-    {
-      "degree": "HSC, Science",
-      "school": "Mosharrof Hossain Khan Chowdhury University College, 2017"
-    }
-  ],
-  "languages": "Bengali (Native)  |  English (Fluent)",
-  "references": [
-    {
-      "name": "Rahiyan Safin",
-      "title": "Senior Software Engineer, Techjays",
-      "email": "rahiyansafin@gmail.com"
-    },
-    {
-      "name": "Jerome Stephan",
-      "title": "Founder, Approveage Inc.",
-      "email": "jerome.ramsay@gmail.com"
-    }
-  ]
+  "summary": "Full Stack Software Engineer with 3+ years of experience building production applications with Node.js, TypeScript, and Next.js. Experienced across frontend, REST APIs, databases, and Docker, with end-to-end ownership of production applications.",
+  "title": "Full Stack Developer — Node.js / Next.js"
 }
