@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROFILES: dict[str, dict[str, str]] = {
-    "fullstack": {"label": "Full Stack", "filename": "resume-data.json"},
+    "fullstack": {"label": "Full Stack", "filename": "resume-data-fullstack.json"},
     "frontend": {"label": "Frontend", "filename": "resume-data-frontend.json"},
 }
 

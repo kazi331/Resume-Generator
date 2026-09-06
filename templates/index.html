@@ -82,6 +82,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .profile-actions {
@@ -172,13 +173,14 @@
     .layout {
       flex: 1;
       display: flex;
+      justify-content: center;
       min-height: 0;
     }
 
     .editor-pane {
       width: 42%;
       min-width: 320px;
-      max-width: 560px;
+      max-width: 760px;
       display: flex;
       flex-direction: column;
       padding: 24px;
@@ -213,7 +215,7 @@
     }
 
     .preview-pane {
-      flex: 1;
+      /* flex: 1; */
       overflow-y: auto;
       padding: 24px;
       display: flex;
@@ -223,8 +225,8 @@
     /* The "page" mimics US Letter proportions at 96dpi (8.5in = 816px),
      using pt-based font sizes so it matches the PDF's real point sizes. */
     #page {
-      width: 816px;
-      max-width: 100%;
+      max-width: 816px;
+      width: 100%;
       background: white;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.03);
       padding: 30.7pt 41.3pt 28pt 41.3pt;
@@ -356,6 +358,7 @@
     @media (max-width: 900px) {
       .tabbar {
         display: flex;
+        padding: 0 20px;
       }
 
       .layout {
@@ -367,7 +370,8 @@
         max-width: none;
         border-right: none;
         border-bottom: 1px solid #ddd;
-        height: 95vh;
+        max-height: 95vh;
+        height: 100%;
         padding: 14px;
       }
 
