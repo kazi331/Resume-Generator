@@ -92,7 +92,8 @@
       "company": "Approveage Inc · Toronto (Remote)",
       "companyLink": null,
       "bullets": [
-        "Built real-time client/admin data flow with Socket.IO and Firebase Cloud Messaging; improved response speed 30% via TanStack Query."
+        "Built real-time client/admin communication using Socket.IO and Firebase Cloud Messaging, supporting live data updates and push notifications.",
+        "Optimized client-side data fetching and caching with TanStack Query, improving application response speed by 30%."
       ]
     }
   ],
