@@ -70,7 +70,8 @@ def generate():
     raw_text = request.form.get("resume_json", "")
     selected_profile = request.form.get("profile", "fullstack")
     try:
-        data = save_data(selected_profile, raw_text)
+        # data = save_data(selected_profile, raw_text) # changes file content
+        data = json.loads(raw_text)
     except KeyError:
         return jsonify({"error": "Unknown resume profile."}), 400
     except json.JSONDecodeError as e:
