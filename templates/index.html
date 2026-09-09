@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resume PDF Generator</title>
-  <!-- Prism.js CSS for syntax highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material-darker.min.css">
   <style>
     @font-face {
       font-family: 'ResumeFont';
@@ -188,30 +189,28 @@
       padding: 24px;
     }
 
-    /* Contenteditable editor styles */
+    /* CodeMirror editor styles */
     #editor {
       flex: 1;
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 6px;
-      padding: 12px;
-      overflow: auto;
-      font-family: 'Courier New', monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      background: #2d2d2d;
-      color: #f8f8f2;
-      white-space: pre;
-      word-wrap: break-word;
-      outline: none;
-      tab-size: 2;
-      -moz-tab-size: 2;
-      resize: none;
+      overflow: hidden;
     }
 
-    #editor:focus {
-      border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(31, 45, 61, 0.1);
+    .CodeMirror {
+      height: 100% !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 12px !important;
+    }
+
+    .CodeMirror-gutters {
+      background-color: #263238 !important;
+      border-right: 1px solid #1e272c !important;
+    }
+
+    .CodeMirror-linenumber {
+      color: #546e7a !important;
     }
 
     .editor-pane .hint {
@@ -444,7 +443,7 @@
   <div class="layout showEditorOnly" id="layout">
     <div class="editor-pane">
       <div id="jsonError"></div>
-      <textarea id="editor" role="textbox" aria-label="Resume JSON editor" spellcheck="false"></textarea>
+      <div id="editor" role="textbox" aria-label="Resume JSON editor"></div>
       <p class="hint">Edits update the preview instantly and save to the selected profile when you generate a PDF.</p>
     </div>
 
@@ -454,10 +453,11 @@
   </div>
 
   <script type="application/json" id="initialResumeJson">{{ resume_json | tojson }}</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <!-- CodeMirror JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript.min.js"></script>
   <script>
-    const editor = document.getElementById('editor');
+    let editor;
     const pageEl = document.getElementById('page');
     const jsonErrorEl = document.getElementById('jsonError');
     const statusEl = document.getElementById('status');
@@ -467,9 +467,27 @@
     const tabEditor = document.getElementById('tabEditor');
     const tabPreview = document.getElementById('tabPreview');
 
-    // Initialize editor with formatted JSON
+    // Initialize CodeMirror
     const initialJson = JSON.parse(document.getElementById('initialResumeJson').textContent);
-    editor.value = JSON.stringify(initialJson, null, 2);
+    editor = CodeMirror(document.getElementById('editor'), {
+      value: JSON.stringify(initialJson, null, 2),
+      mode: 'application/json',
+      theme: 'material-darker',
+      lineNumbers: true,
+      lineWrapping: true,
+      indentUnit: 2,
+      indentWithTabs: false,
+      tabSize: 2,
+      autoIndent: true,
+      smartIndent: true,
+      matchBrackets: true,
+      autoCloseBrackets: true,
+      styleActiveLine: true,
+      highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+      extraKeys: {
+        'Ctrl-Space': 'autocomplete'
+      }
+    });
 
     function escapeHtml(str) {
       const d = document.createElement('div');
@@ -540,30 +558,12 @@
       pageEl.innerHTML = html;
     }
 
-    // Handle Tab key for indentation
-    editor.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        e.preventDefault();
-        const start = editor.selectionStart;
-        const end = editor.selectionEnd;
-        const text = editor.value;
-
-        // Insert 2 spaces for indentation
-        const newText = text.substring(0, start) + '  ' + text.substring(end);
-        editor.value = newText;
-
-        // Move cursor after inserted spaces
-        editor.selectionStart = editor.selectionEnd = start + 2;
-      }
-    });
-
     let debounceTimer = null;
     function scheduleUpdate() {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         try {
-          const jsonText = editor.value;
-          const data = JSON.parse(jsonText);
+          const data = JSON.parse(editor.getValue());
           renderPreview(data);
           jsonErrorEl.style.display = 'none';
         } catch (e) {
@@ -573,9 +573,7 @@
       }, 250);
     }
 
-    editor.addEventListener('input', scheduleUpdate);
-
-    // Initialize preview
+    editor.on('change', scheduleUpdate);
     scheduleUpdate();
 
     profileSelect.addEventListener('change', async () => {
@@ -588,8 +586,7 @@
           throw new Error('Could not load profile.');
         }
         const data = await resp.json();
-        editor.value = JSON.stringify(data, null, 2);
-        scheduleUpdate();
+        editor.setValue(JSON.stringify(data, null, 2));
       } catch (err) {
         statusEl.textContent = err.message;
         statusEl.className = 'error';
@@ -604,6 +601,7 @@
       tabPreview.classList.remove('active');
       layoutEl.classList.remove('showPreviewOnly');
       layoutEl.classList.add('showEditorOnly');
+      editor.refresh();
     });
     tabPreview.addEventListener('click', () => {
       tabPreview.classList.add('active');
@@ -620,7 +618,7 @@
 
       try {
         const formData = new FormData();
-        formData.append('resume_json', editor.value);
+        formData.append('resume_json', editor.getValue());
         formData.append('profile', profileSelect.value);
         const resp = await fetch('/generate', { method: 'POST', body: formData });
 
