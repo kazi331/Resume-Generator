@@ -65,6 +65,25 @@ def profile(profile: str):
         return jsonify({"error": "Unknown or invalid resume profile."}), 404
 
 
+@app.route("/download", methods=["GET"])
+def download_default_resume():
+    """Download the default full-stack resume."""
+    try:
+        data = json.loads(load_data("fullstack"))
+        pdf_bytes = build_resume_pdf(data)
+    except (json.JSONDecodeError, KeyError) as error:
+        return jsonify({"error": f"Unable to generate resume: {error}"}), 500
+
+    filename = slugify_filename(data.get("title", "full-stack-resume"))
+
+    return send_file(
+        io.BytesIO(pdf_bytes),
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=filename,
+    )
+
+
 @app.route("/generate", methods=["POST"])
 def generate():
     raw_text = request.form.get("resume_json", "")
